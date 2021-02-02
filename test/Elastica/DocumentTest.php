@@ -153,7 +153,7 @@ class DocumentTest extends BaseTest
 
         $options = $document->getOptions(['index', 'type', 'id', 'parent']);
 
-        $this->assertInternalType('array', $options);
+        $this->assertIsArray($options);
         $this->assertEquals(3, count($options));
         $this->assertArrayHasKey('index', $options);
         $this->assertArrayHasKey('id', $options);
@@ -169,7 +169,7 @@ class DocumentTest extends BaseTest
 
         $options = $document->getOptions(['parent', 'op_type', 'percolate'], true);
 
-        $this->assertInternalType('array', $options);
+        $this->assertIsArray($options);
         $this->assertEquals(2, count($options));
         $this->assertArrayHasKey('_parent', $options);
         $this->assertArrayHasKey('_op_type', $options);

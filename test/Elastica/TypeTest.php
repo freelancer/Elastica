@@ -331,10 +331,11 @@ class TypeTest extends BaseTest
 
     /**
      * @group functional
-     * @expectedException \Elastica\Exception\NotFoundException
      */
     public function testGetDocumentNotExist()
     {
+        $this->expectException(\Elastica\Exception\NotFoundException::class);
+
         $index = $this->_createIndex();
         $type = new Type($index, 'test');
         $type->addDocument(new Document(1, ['name' => 'ruflin']));
@@ -347,10 +348,11 @@ class TypeTest extends BaseTest
 
     /**
      * @group functional
-     * @expectedException \Elastica\Exception\ResponseException
      */
     public function testGetDocumentNotExistingIndex()
     {
+        $this->expectException(\Elastica\Exception\ResponseException::class);
+
         $client = $this->_getClient();
         $index = new Index($client, 'index');
         $type = new Type($index, 'type');
@@ -665,7 +667,7 @@ class TypeTest extends BaseTest
             $type->updateDocument($script, ['version' => 999]); // Wrong version number to make the update fail
         } catch (ResponseException $e) {
             $error = $e->getResponse()->getFullError();
-            $this->assertContains('version_conflict_engine_exception', $error['type']);
+            $this->assertSame('version_conflict_engine_exception', $error['type']);
         }
         $updatedDoc = $type->getDocument($id)->getData();
         $this->assertNotEquals($newName, $updatedDoc['name'], 'Name was updated');
@@ -724,10 +726,11 @@ class TypeTest extends BaseTest
 
     /**
      * @group functional
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testUpdateDocumentWithoutId()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+
         $index = $this->_createIndex();
         $this->_waitForAllocation($index);
         $type = $index->getType('elastica_type');
@@ -776,7 +779,7 @@ class TypeTest extends BaseTest
             $this->fail('Update request should fail because source is disabled. Fields param is not set');
         } catch (ResponseException $e) {
             $error = $e->getResponse()->getFullError();
-            $this->assertContains('document_source_missing_exception', $error['type']);
+            $this->assertSame('document_source_missing_exception', $error['type']);
         }
 
         $newDocument->setFieldsSource();
@@ -786,7 +789,7 @@ class TypeTest extends BaseTest
             $this->fail('Update request should fail because source is disabled. Fields param is set to _source');
         } catch (ResponseException $e) {
             $error = $e->getResponse()->getFullError();
-            $this->assertContains('document_source_missing_exception', $error['type']);
+            $this->assertSame('document_source_missing_exception', $error['type']);
         }
     }
 
@@ -843,10 +846,11 @@ class TypeTest extends BaseTest
 
     /**
      * @group functional
-     * @expectedException \Elastica\Exception\RuntimeException
      */
     public function testAddDocumentWithoutSerializer()
     {
+        $this->expectException(\Elastica\Exception\RuntimeException::class);
+
         $index = $this->_createIndex();
         $this->_waitForAllocation($index);
 
@@ -993,11 +997,11 @@ class TypeTest extends BaseTest
 
     /**
      * @group functional
-     *
-     * @expectedException \Elastica\Exception\ResponseException
      */
     public function testExceptionMappingOnFieldsWithSameName()
     {
+        $this->expectException(\Elastica\Exception\ResponseException::class);
+
         $index = $this->_createIndex();
         $type1 = new Type($index, 'foo');
         $type2 = new Type($index, 'bar');

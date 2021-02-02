@@ -4,8 +4,8 @@ namespace Elastica\Test\Transport;
 use Elastica\Connection;
 use Elastica\Transport\AbstractTransport;
 use Elastica\Transport\Http;
-
-class AbstractTransportTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+class AbstractTransportTest extends TestCase
 {
     /**
      * Return transport configuration and the expected HTTP method.
@@ -49,11 +49,11 @@ class AbstractTransportTest extends \PHPUnit_Framework_TestCase
     /**
      * @group unit
      * @dataProvider getInvalidDefinitions
-     * @expectedException \Elastica\Exception\InvalidException
-     * @expectedExceptionMessage Invalid transport
      */
     public function testThrowsExecptionOnInvalidTransportDefinition($transport)
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+        $this->expectExceptionMessage('Invalid transport');
         AbstractTransport::create($transport, new Connection());
     }
 

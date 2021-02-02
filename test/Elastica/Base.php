@@ -5,8 +5,10 @@ use Elastica\Client;
 use Elastica\Connection;
 use Elastica\Index;
 use Psr\Log\LoggerInterface;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Util\Test as TestUtil;
 
-class Base extends \PHPUnit_Framework_TestCase
+class Base extends TestCase
 {
     protected static function hideDeprecated()
     {
@@ -180,7 +182,7 @@ class Base extends \PHPUnit_Framework_TestCase
         } while (!$allocated);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -189,7 +191,7 @@ class Base extends \PHPUnit_Framework_TestCase
         $this->showDeprecated();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if ($this->_isFunctionalGroup()) {
             $this->_getClient()->getIndex('_all')->delete();
@@ -201,21 +203,21 @@ class Base extends \PHPUnit_Framework_TestCase
 
     protected function _isUnitGroup()
     {
-        $groups = \PHPUnit_Util_Test::getGroups(get_class($this), $this->getName(false));
+        $groups = TestUtil::getGroups(get_class($this), $this->getName(false));
 
         return in_array('unit', $groups);
     }
 
     protected function _isFunctionalGroup()
     {
-        $groups = \PHPUnit_Util_Test::getGroups(get_class($this), $this->getName(false));
+        $groups = TestUtil::getGroups(get_class($this), $this->getName(false));
 
         return in_array('functional', $groups);
     }
 
     protected function _isBenchmarkGroup()
     {
-        $groups = \PHPUnit_Util_Test::getGroups(get_class($this), $this->getName(false));
+        $groups = TestUtil::getGroups(get_class($this), $this->getName(false));
 
         return in_array('benchmark', $groups);
     }

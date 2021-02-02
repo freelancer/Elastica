@@ -135,10 +135,10 @@ class SearchTest extends BaseTest
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testAddTypeInvalid()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $client = $this->_getClient();
         $search = new Search($client);
 
@@ -147,10 +147,10 @@ class SearchTest extends BaseTest
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testAddIndexInvalid()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $client = $this->_getClient();
         $search = new Search($client);
 
@@ -413,10 +413,10 @@ class SearchTest extends BaseTest
 
     /**
      * @group functional
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testInvalidConfigSearch()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $client = $this->_getClient();
         $search = new Search($client);
         // Throws InvalidException

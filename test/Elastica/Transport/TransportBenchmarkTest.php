@@ -11,7 +11,7 @@ use Elastica\Type\Mapping;
 
 class TransportBenchmarkTest extends BaseTest
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->markTestIncomplete('Benchmarks currently skipped with es2.0. Has to be reworked');
@@ -23,7 +23,7 @@ class TransportBenchmarkTest extends BaseTest
 
     protected static $_results = [];
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::printResults();
     }

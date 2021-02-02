@@ -260,7 +260,7 @@ class BulkTest extends BaseTest
 
         $actions = $bulk->getActions();
 
-        $this->assertInternalType('array', $actions);
+        $this->assertIsArray($actions);
         $this->assertEquals(5, count($actions));
 
         $this->assertInstanceOf(Action::class, $actions[0]);
@@ -294,10 +294,11 @@ class BulkTest extends BaseTest
     /**
      * @group unit
      * @dataProvider invalidRawDataProvider
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testInvalidRawData($rawData, $failMessage)
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+
         $bulk = new Bulk($this->_getClient());
 
         $bulk->addRawData($rawData);
@@ -370,9 +371,9 @@ class BulkTest extends BaseTest
             $bulk->fail('3rd document create should produce error');
         } catch (ResponseException $e) {
             $error = $e->getResponseSet()->getFullError();
-            $this->assertContains('version_conflict_engine_exception', $error['type']);
+            $this->assertStringContainsString('version_conflict_engine_exception', $error['type']);
             $failures = $e->getFailures();
-            $this->assertInternalType('array', $failures);
+            $this->assertIsArray($failures);
             $this->assertArrayHasKey(0, $failures);
         }
     }

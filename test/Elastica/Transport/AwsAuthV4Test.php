@@ -6,7 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 
 class AwsAuthV4Test extends GuzzleTest
 {
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         if (!class_exists('Aws\\Sdk')) {
             self::markTestSkipped('aws/aws-sdk-php package should be installed to run SignatureV4 transport tests');

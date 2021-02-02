@@ -51,6 +51,7 @@ class RoundRobinTest extends Base
      */
     public function testFailConnection()
     {
+        $this->expectException(\Elastica\Exception\ConnectionException::class);
         $config = ['connectionStrategy' => 'RoundRobin', 'host' => '255.255.255.0', 'timeout' => $this->_timeout];
         $client = $this->_getClient($config);
 

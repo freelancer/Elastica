@@ -41,10 +41,10 @@ class ConnectionTest extends BaseTest
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\ConnectionException
      */
     public function testInvalidConnection()
     {
+        $this->expectException(\Elastica\Exception\ConnectionException::class);
         $connection = new Connection(['port' => 9999]);
 
         $request = new Request('_stats', Request::GET);
@@ -73,11 +73,10 @@ class ConnectionTest extends BaseTest
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testCreateInvalid()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         Connection::create('test');
     }
 
@@ -103,21 +102,21 @@ class ConnectionTest extends BaseTest
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
-     * @expectedExceptionMessage Invalid transport
      */
     public function testGetInvalidConfigWithArrayUsedForTransport()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+        $this->expectExceptionMessage('Invalid transport');
         $connection = new Connection(['transport' => ['type' => 'invalidtransport']]);
         $connection->getTransportObject();
     }
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testGetConfigInvalidValue()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $connection = new Connection();
         $connection->getConfig('url');
     }

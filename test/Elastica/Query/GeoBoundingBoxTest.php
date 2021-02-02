@@ -29,6 +29,8 @@ class GeoBoundingBoxTest extends BaseTest
      */
     public function testAddCoordinatesInvalidException()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+
         $query = new GeoBoundingBox('foo', []);
     }
 

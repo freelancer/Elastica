@@ -41,7 +41,7 @@ class ResponseTest extends BaseTest
         $engineTime = $resultSet->getResponse()->getEngineTime();
         $shardsStats = $resultSet->getResponse()->getShardsStatistics();
 
-        $this->assertInternalType('int', $engineTime);
+        $this->assertIsInt($engineTime);
         $this->assertTrue(is_array($shardsStats));
         $this->assertArrayHasKey('total', $shardsStats);
         $this->assertArrayHasKey('successful', $shardsStats);

@@ -82,6 +82,8 @@ class TermsTest extends BaseTest
      */
     public function testInvalidParams()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+
         $query = new Terms();
 
         $query->toArray();

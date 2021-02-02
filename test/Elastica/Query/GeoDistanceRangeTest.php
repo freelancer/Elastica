@@ -8,10 +8,11 @@ class GeoDistanceRangeTest extends DeprecatedClassBase
 {
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testInvalidRange()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+
         $geoQuery = new GeoDistanceRange(
             'point',
             ['lat' => 30, 'lon' => 40],
@@ -22,10 +23,11 @@ class GeoDistanceRangeTest extends DeprecatedClassBase
     /**
      * @group unit
      * @dataProvider invalidLocationDataProvider
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testInvalidLocation($location)
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+
         $geoQuery = new GeoDistanceRange(
             'point',
             $location,

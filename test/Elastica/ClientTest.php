@@ -38,7 +38,7 @@ class ClientTest extends BaseTest
     {
         $client = $this->_getClient();
         $this->assertNotEmpty($client->getVersion());
-        $this->assertTrue(version_compare($client->getVersion(), $_SERVER['ELASTICSEARCH_VERSION'], '>='));
+        $this->assertTrue(version_compare($client->getVersion(), $_SERVER['ELASTICSEARCH_VERSION'] ?? null, '>='));
     }
 
     /**
@@ -178,10 +178,10 @@ class ClientTest extends BaseTest
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testAddDocumentsEmpty()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $client = $this->_getClient();
         $client->addDocuments([]);
     }
@@ -1064,7 +1064,7 @@ class ClientTest extends BaseTest
         $this->assertNotEquals(10, $client->getConfigValue('level11', 10));
 
         $this->assertEquals('value3', $client->getConfigValue(['level1', 'level2', 'level3']));
-        $this->assertInternalType('array', $client->getConfigValue(['level1', 'level2']));
+        $this->assertIsArray($client->getConfigValue(['level1', 'level2']));
     }
 
     /**
@@ -1231,11 +1231,11 @@ class ClientTest extends BaseTest
     }
 
     /**
-     * @expectedException \Elastica\Exception\Connection\HttpException
      * @group functional
      */
     public function testLoggerOnFailure()
     {
+        $this->expectException(\Elastica\Exception\Connection\HttpException::class);
         $logger = $this->createMock('Psr\\Log\\LoggerInterface');
         $client = $this->_getClient(['connections' => [
             ['host' => $this->_getHost(), 'port' => 9201],

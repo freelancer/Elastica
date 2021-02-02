@@ -114,6 +114,8 @@ class ScriptTest extends BaseTest
      */
     public function testCreateInvalid($data)
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
+
         Script::create($data);
     }
 

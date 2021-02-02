@@ -44,7 +44,7 @@ class Http extends AbstractTransport
      *
      * @return \Elastica\Response Response object
      */
-    public function exec(Request $request, array $params)
+    public function exec(Request $request, array $params): Response
     {
         $connection = $this->getConnection();
 
@@ -129,7 +129,7 @@ class Http extends AbstractTransport
 
             if (is_array($data)) {
                 $content = JSON::stringify($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-            } else {
+            } else if (!is_object($data)){
                 $content = $data;
 
                 // Escaping of / not necessary. Causes problems in base64 encoding of files

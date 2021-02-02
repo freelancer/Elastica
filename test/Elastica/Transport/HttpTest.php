@@ -238,7 +238,7 @@ class HttpTest extends BaseTest
         $createIndexResponse = $index->create([], true);
 
         $createIndexResponseTransferInfo = $createIndexResponse->getTransferInfo();
-        $this->assertRegExp('/Accept-Encoding:\ (gzip|deflate)/', $createIndexResponseTransferInfo['request_header']);
+        $this->assertMatchesRegularExpression('/Accept-Encoding:\ (gzip|deflate)/', $createIndexResponseTransferInfo['request_header']);
         $this->assertArrayHasKey('acknowledged', $createIndexResponse->getData());
     }
 
@@ -254,7 +254,7 @@ class HttpTest extends BaseTest
         $createIndexResponse = $index->create([], true);
 
         $createIndexResponseTransferInfo = $createIndexResponse->getTransferInfo();
-        $this->assertRegExp('/Accept-Encoding:\ (gzip|deflate)/', $createIndexResponseTransferInfo['request_header']);
+        $this->assertMatchesRegularExpression('/Accept-Encoding:\ (gzip|deflate)/', $createIndexResponseTransferInfo['request_header']);
         $this->assertArrayHasKey('acknowledged', $createIndexResponse->getData());
     }
 
@@ -264,7 +264,7 @@ class HttpTest extends BaseTest
         $this->_checkConnection($url['host'], $url['port']);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         putenv('http_proxy=');

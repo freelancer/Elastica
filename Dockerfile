@@ -26,6 +26,8 @@ RUN mkdir -p \
 	./build/coverage
 
 # Prefer source removed as automatic fallback now
+RUN git config --global url."https://github.com/".insteadOf git@github.com:
+RUN git config --global url."https://".insteadOf git://
 RUN composer install
 RUN composer dump-autoload
 

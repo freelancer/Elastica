@@ -69,7 +69,7 @@ class SearchTest extends BaseTest
 
         $searches = $multiSearch->getSearches();
 
-        $this->assertInternalType('array', $searches);
+        $this->assertIsArray($searches);
         $this->assertCount(3, $searches);
         $this->assertArrayHasKey(0, $searches);
         $this->assertSame($search1, $searches[0]);
@@ -81,7 +81,7 @@ class SearchTest extends BaseTest
         $multiSearch->clearSearches();
         $searches = $multiSearch->getSearches();
 
-        $this->assertInternalType('array', $searches);
+        $this->assertIsArray($searches);
         $this->assertCount(0, $searches);
     }
 
@@ -101,7 +101,7 @@ class SearchTest extends BaseTest
 
         $searches = $multiSearch->getSearches();
 
-        $this->assertInternalType('array', $searches);
+        $this->assertIsArray($searches);
         $this->assertCount(3, $searches);
         $this->assertArrayHasKey('search1', $searches);
         $this->assertSame($search1, $searches['search1']);
@@ -113,7 +113,7 @@ class SearchTest extends BaseTest
         $multiSearch->clearSearches();
         $searches = $multiSearch->getSearches();
 
-        $this->assertInternalType('array', $searches);
+        $this->assertIsArray($searches);
         $this->assertCount(0, $searches);
     }
 
@@ -170,7 +170,7 @@ class SearchTest extends BaseTest
 
         $resultSets = $multiResultSet->getResultSets();
 
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey(0, $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets[0]);
@@ -196,7 +196,7 @@ class SearchTest extends BaseTest
 
         $resultSets = $multiResultSet->getResultSets();
 
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey(0, $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets[0]);
@@ -267,7 +267,7 @@ class SearchTest extends BaseTest
 
         $resultSets = $multiResultSet->getResultSets();
 
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey('search1', $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets['search1']);
@@ -293,7 +293,7 @@ class SearchTest extends BaseTest
 
         $resultSets = $multiResultSet->getResultSets();
 
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey('search1', $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets['search1']);
@@ -335,7 +335,7 @@ class SearchTest extends BaseTest
 
         $this->assertInstanceOf(MultiResultSet::class, $multiResultSet);
         $resultSets = $multiResultSet->getResultSets();
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey(0, $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets[0]);
@@ -381,7 +381,7 @@ class SearchTest extends BaseTest
 
         $this->assertInstanceOf(MultiResultSet::class, $multiResultSet);
         $resultSets = $multiResultSet->getResultSets();
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey('search1', $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets['search1']);
@@ -445,7 +445,7 @@ class SearchTest extends BaseTest
 
         $resultSets = $multiResultSet->getResultSets();
 
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey(0, $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets[0]);
@@ -469,7 +469,7 @@ class SearchTest extends BaseTest
 
         $resultSets = $multiResultSet->getResultSets();
 
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey(0, $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets[0]);
@@ -530,7 +530,7 @@ class SearchTest extends BaseTest
 
         $resultSets = $multiResultSet->getResultSets();
 
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey(0, $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets[0]);
@@ -554,7 +554,7 @@ class SearchTest extends BaseTest
 
         $resultSets = $multiResultSet->getResultSets();
 
-        $this->assertInternalType('array', $resultSets);
+        $this->assertIsArray($resultSets);
 
         $this->assertArrayHasKey(0, $resultSets);
         $this->assertInstanceOf(ResultSet::class, $resultSets[0]);

@@ -91,20 +91,20 @@ class BucketScriptTest extends BaseAggregationTest
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testToArrayInvalidBucketsPath()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $serialDiffAgg = new BucketScript('bucket_scripted');
         $serialDiffAgg->toArray();
     }
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testToArrayInvalidScript()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $serialDiffAgg = new BucketScript('bucket_scripted', ['path' => 'agg']);
         $serialDiffAgg->toArray();
     }

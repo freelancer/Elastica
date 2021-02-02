@@ -82,6 +82,7 @@ class SumBucketTest extends BaseAggregationTest
      */
     public function testToArrayInvalidBucketsPath()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $serialDiffAgg = new SumBucket('sum_bucket');
         $serialDiffAgg->toArray();
     }

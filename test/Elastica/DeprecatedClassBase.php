@@ -8,13 +8,13 @@ namespace Elastica\Test;
  */
 class DeprecatedClassBase extends Base
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->hideDeprecated();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->showDeprecated();
         parent::tearDown();

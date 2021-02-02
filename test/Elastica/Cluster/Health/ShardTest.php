@@ -11,7 +11,7 @@ class ShardTest extends BaseTest
      */
     protected $_shard;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

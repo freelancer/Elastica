@@ -125,10 +125,10 @@ class QueryStringTest extends BaseTest
 
     /**
      * @group unit
-     * @expectedException \Elastica\Exception\InvalidException
      */
     public function testSetQueryInvalid()
     {
+        $this->expectException(\Elastica\Exception\InvalidException::class);
         $query = new QueryString();
         $query->setQuery([]);
     }

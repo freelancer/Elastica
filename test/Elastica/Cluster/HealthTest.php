@@ -12,7 +12,7 @@ class HealthTest extends BaseTest
      */
     protected $_health;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -185,7 +185,7 @@ class HealthTest extends BaseTest
     {
         $indices = $this->_health->getIndices();
 
-        $this->assertInternalType('array', $indices);
+        $this->assertIsArray($indices);
         $this->assertEquals(2, count($indices));
         $this->assertArrayHasKey('index_one', $indices);
         $this->assertArrayHasKey('index_two', $indices);

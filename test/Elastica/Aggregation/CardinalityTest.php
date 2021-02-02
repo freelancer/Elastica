@@ -48,13 +48,13 @@ class CardinalityTest extends BaseAggregationTest
 
     /**
      * @dataProvider invalidPrecisionThresholdProvider
-     * @expectedException \InvalidArgumentException
      * @group unit
      *
      * @param $threshold
      */
     public function testInvalidPrecisionThreshold($threshold)
     {
+        $this->expectException(\InvalidArgumentException::class);
         $agg = new Cardinality('threshold');
         $agg->setPrecisionThreshold($threshold);
     }
@@ -71,7 +71,7 @@ class CardinalityTest extends BaseAggregationTest
         $agg->setPrecisionThreshold($threshold);
 
         $this->assertNotNull($agg->getParam('precision_threshold'));
-        $this->assertInternalType('int', $agg->getParam('precision_threshold'));
+        $this->assertIsInt($agg->getParam('precision_threshold'));
     }
 
     public function invalidPrecisionThresholdProvider()
@@ -107,18 +107,18 @@ class CardinalityTest extends BaseAggregationTest
         $agg->setRehash($rehash);
 
         $this->assertNotNull($agg->getParam('rehash'));
-        $this->assertInternalType('boolean', $agg->getParam('rehash'));
+        $this->assertisBool($agg->getParam('rehash'));
     }
 
     /**
      * @dataProvider invalidRehashProvider
-     * @expectedException \InvalidArgumentException
      * @group unit
      *
      * @param mixed $rehash
      */
     public function testInvalidRehash($rehash)
     {
+        $this->expectException(\InvalidArgumentException::class);
         $agg = new Cardinality('rehash');
         $agg->setRehash($rehash);
     }

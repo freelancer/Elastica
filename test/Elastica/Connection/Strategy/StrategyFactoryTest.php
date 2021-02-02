@@ -60,10 +60,11 @@ class StrategyFactoryTest extends Base
 
     /**
      * @group unit
-     * @expectedException \InvalidArgumentException
      */
     public function testFailCreate()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $strategy = new \stdClass();
 
         StrategyFactory::create($strategy);

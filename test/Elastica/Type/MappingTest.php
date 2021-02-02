@@ -238,22 +238,19 @@ class MappingTest extends BaseTest
         $index->refresh();
 
         $newMapping = $type->getMapping();
-        $this->assertArraySubset(
+        $this->assertArrayHasKey('person', $newMapping);
+        $this->assertArrayHasKey('properties', $newMapping['person']);
+        $this->assertArrayHasKey('multiname', $newMapping['person']['properties']);
+        $this->assertSame(
             [
-                'person' => [
-                    'properties' => [
-                        'multiname' => [
-                            'type' => 'text',
-                            'fields' => [
-                                'raw' => [
-                                    'type' => 'keyword',
-                                ],
-                            ],
-                        ],
+                'type' => 'text',
+                'fields' => [
+                    'raw' => [
+                        'type' => 'keyword',
                     ],
-                ],
+                ]
             ],
-            $newMapping,
+            $newMapping['person']['properties']['multiname'],
             'Mapping of dynamic "multiname" field should have been created with the type "{dynamic_type}" resolved to "text". '.
             'The "multiname.raw" sub-field should be of type "keyword".'
         );
