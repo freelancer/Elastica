@@ -129,11 +129,17 @@ class Http extends AbstractTransport
 
             if (is_array($data)) {
                 $content = JSON::stringify($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-            } else if (!is_object($data)){
+            } else if (
+                is_string($data) ||
+                is_scalar($data) ||
+                (is_object($data) && method_exists($data, '__toString'))
+            ){
                 $content = $data;
 
                 // Escaping of / not necessary. Causes problems in base64 encoding of files
                 $content = str_replace('\/', '/', $content);
+            } else {
+                $content = null;
             }
 
             array_push($headers, sprintf('Content-Type: %s', $request->getContentType()));
