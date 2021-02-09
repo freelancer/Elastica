@@ -85,7 +85,7 @@ class MatchQuery extends AbstractQuery
      */
     public function setFieldType($field, $type)
     {
-        trigger_error('Deprecated: Elastica\Query\Match::setFieldType() is deprecated and will be removed in further Elastica releases. Use Elastica\Query\MatchPhrase and Elastica\Query\MatchPhrasePrefix instead.', E_USER_DEPRECATED);
+        trigger_error('Deprecated: Elastica\Query\MatchQuery::setFieldType() is deprecated and will be removed in further Elastica releases. Use Elastica\Query\MatchPhrase and Elastica\Query\MatchPhrasePrefix instead.', E_USER_DEPRECATED);
 
         return $this->setFieldParam($field, 'type', $type);
     }
