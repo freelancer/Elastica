@@ -59,7 +59,8 @@ class Percolate extends AbstractQuery
      */
     public function setExistingDocumentType($type)
     {
-        return $this->setParam('type', $type);
+        // This is for backwards compatibility with ES 6 and below
+        return $this->setParam('document_type', $type);
     }
 
     /**
